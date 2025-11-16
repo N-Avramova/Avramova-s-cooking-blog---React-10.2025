@@ -1,7 +1,9 @@
+import { Link } from 'react-router';
+
 export default function Header() {
   return (
-    <h1>
-      <header>Avramova's Cooking Blog</header>
-    </h1>
+    <nav>
+      <Link className="home" to="/">Home</Link>     
+    </nav>
   )
 }
