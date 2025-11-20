@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
 import RecipeHomeItem from "../RecipeHomeItem/RecipeHomeItem";
 import { fetchRecipes } from "../../services/recipeService";
+import { fetchComments } from "../../services/commentsService";
 
 export default function Home() {
-    const [recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState([]);    
+    const [commentCounts, setCommentCounts] = useState({});
    useEffect(() => {
        const allRecipes = async () => {
            const recipesData = await fetchRecipes();
            setRecipes(recipesData);
+           
+           const allComments = await fetchComments();
+           console.log(allComments);
+           const commentCountsMap = {};
+           recipesData.forEach(recipe => {
+               commentCountsMap[recipe._id] = allComments.filter(comment => comment.recipeId === recipe._id).length;
+           });
+           setCommentCounts(commentCountsMap);
        }
        allRecipes();
   }, []);
@@ -22,7 +32,8 @@ export default function Home() {
                imageUrl={recipe.imageUrl} 
                category={recipe.category}
                description={recipe.summary}
-               timeToCook={recipe.timeToCook}    
+               timeToCook={recipe.timeToCook} 
+               commentCount={commentCounts[recipe._id] || 0}    
            />
           </div>
        )

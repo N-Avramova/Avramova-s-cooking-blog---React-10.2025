@@ -6,7 +6,8 @@ export default function RecipeHomeItem(
         imageUrl,
         category,
         description,
-        timeToCook
+        timeToCook,
+        commentCount
     }
 ) {
 
@@ -38,7 +39,7 @@ export default function RecipeHomeItem(
                     <span class="text-sm text-gray-500">⏱️ {timeToCook}</span>
 
                     {/* <!-- Comments --> */}
-                    <span class="text-sm text-gray-500">💬 12 comments</span>
+                    <span class="text-sm text-gray-500">💬 {commentCount} comments</span>
                 </div>
 
                 <Link
