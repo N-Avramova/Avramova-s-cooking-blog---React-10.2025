@@ -1,9 +1,32 @@
+import { useEffect, useState } from "react";
+import RecipeHomeItem from "../RecipeHomeItem/RecipeHomeItem";
+import { fetchRecipes } from "../../services/recipeService";
+
 export default function Home() {
+    const [recipes, setRecipes] = useState([]);
+   useEffect(() => {
+       const allRecipes = async () => {
+           const recipesData = await fetchRecipes();
+           setRecipes(recipesData);
+       }
+       allRecipes();
+  }, []);
+
   return (
-    <>
-      <h2>Welcome to Avramova's Cooking Blog!</h2>
-      <p>Discover delicious recipes, cooking tips, and culinary inspiration from around the world. Whether you're a beginner or a seasoned chef, our blog has something for everyone.</p>
-      {/* <img src="./images/cooking-home.jpg" alt="Cooking" /> */}
-      </>
+    <div className="grid grid-cols-1 gap-4 items-center justify-center min-h-screen">
+       { recipes.map(recipe => 
+          <div className="w-4/5 mx-auto">
+            <RecipeHomeItem 
+              key={recipe._id}    
+              title={recipe.title}
+               imageUrl={recipe.imageUrl} 
+               category={recipe.category}
+               description={recipe.summary}
+               timeToCook={recipe.timeToCook}    
+           />
+          </div>
+       )
+       }
+    </div>
   )
 }
