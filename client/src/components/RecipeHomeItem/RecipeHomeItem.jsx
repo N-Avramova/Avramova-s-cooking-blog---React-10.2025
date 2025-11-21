@@ -2,6 +2,7 @@ import { Link } from "react-router";
 
 export default function RecipeHomeItem(
     {
+        recipeId,
         title,
         imageUrl,
         category,
@@ -32,7 +33,7 @@ export default function RecipeHomeItem(
                 </h2>
 
                 <p class="text-gray-600 text-sm mb-4">
-                    {description}
+                    {description.length > 100 ? description.slice(0, 100) + '...' : description}
                 </p>
 
                 <div class="flex items-center justify-between mb-3">
@@ -43,7 +44,7 @@ export default function RecipeHomeItem(
                 </div>
 
                 <Link
-                    to="/details"
+                    to={`/details/${recipeId}`}
                     class="inline-block w-full text-center px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md transition-colors text-sm font-medium"
                 >
                     View Recipe

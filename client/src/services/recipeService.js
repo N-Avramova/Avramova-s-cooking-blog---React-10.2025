@@ -5,3 +5,9 @@ export async function fetchRecipes() {
     const data = await response.json();
     return Object.values(data);
 }
+
+export async function fetchRecipeById(recipeId) {
+    const response = await fetch(`${baseUrl}/jsonstore/recipes/${recipeId}`);
+    const data = await response.json();
+    return data;
+}

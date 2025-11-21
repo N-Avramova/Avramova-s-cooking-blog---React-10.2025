@@ -27,7 +27,8 @@ export default function Home() {
        { recipes.map(recipe => 
           <div className="w-4/5 mx-auto">
             <RecipeHomeItem 
-              key={recipe._id}    
+              key={recipe._id} 
+                  recipeId={recipe._id}   
               title={recipe.title}
                imageUrl={recipe.imageUrl} 
                category={recipe.category}
