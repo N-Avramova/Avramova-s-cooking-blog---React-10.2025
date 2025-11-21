@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { fetchRecipeById } from "../../services/recipeService";
+import DetailsComments from "../Details/details-comments/DetailsComments";
 
 export default function Details() {
     const { recipeId } = useParams();
@@ -14,8 +15,6 @@ export default function Details() {
         }
         recipeData();
     }, [recipeId]);
-
-
 
     return (
         <>
@@ -60,7 +59,10 @@ export default function Details() {
                     <p class="text-gray-700 leading-relaxed">
                         {recipeData.summary}
                     </p>
-                </div>               
+                </div>
+
+                <DetailsComments recipeId={recipeData._id} />
+                         
             </div>
         </>
     )
