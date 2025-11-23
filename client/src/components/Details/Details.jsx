@@ -32,11 +32,11 @@ export default function Details() {
 
                 {/* <!-- Meta info --> */}
                 <div class="flex items-center space-x-4 text-gray-500 text-sm mb-6">
-                     <span class="inline-block bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-md mb-3">
-                    {recipeData.category}
-                </span>
+                    <span class="inline-block bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-md mb-3">
+                        {recipeData.category}
+                    </span>
                     <span>⏱️ {recipeData.timeToCook}</span>
-                   
+
                 </div>
 
                 {/* Ingredients */}
@@ -62,7 +62,22 @@ export default function Details() {
                 </div>
 
                 <DetailsComments recipeId={recipeData._id} />
-                         
+                <div className="flex justify-center gap-4 mt-6">
+                    <button
+                        type="button"
+                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow"
+                        onClick={() => { /* TODO: implement edit action (navigate/open form) */ }}
+                    >
+                        Edit
+                    </button>
+                    <button
+                        type="button"
+                        className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-md shadow"
+                        onClick={() => { /* TODO: implement delete action (confirm & delete) */ }}
+                    >
+                        Delete
+                    </button>
+                </div>
             </div>
         </>
     )

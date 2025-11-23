@@ -34,6 +34,7 @@ export default function Home() {
                         category={recipe.category}
                         description={recipe.summary}
                         timeToCook={recipe.timeToCook}
+                        createdOnValue={recipe._createdOn}
                         commentCount={commentCounts[recipe._id] || 0}
                     />
                 </div>
