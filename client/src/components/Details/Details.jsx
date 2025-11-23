@@ -11,7 +11,6 @@ export default function Details() {
         const recipeData = async () => {
             const recipesData = await fetchRecipeById(recipeId);
             setRecipeData(recipesData);
-            console.log(recipesData);
         }
         recipeData();
     }, [recipeId]);
@@ -33,7 +32,7 @@ export default function Details() {
                 {/* <!-- Meta info --> */}
                 <div class="flex items-center space-x-4 text-gray-500 text-sm mb-6">
                     <span class="inline-block bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-md mb-3">
-                        {recipeData.category}
+                        {recipeData.category?.name}
                     </span>
                     <span>⏱️ {recipeData.timeToCook}</span>
 

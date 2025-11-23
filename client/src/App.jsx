@@ -13,6 +13,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sweet" element={<Home categoryName="sweet" />} />
+        <Route path="/soup" element={<Home categoryName="soup" />} />
+        <Route path="/salad" element={<Home categoryName="salad" />} />
+        <Route path="/main-course" element={<Home categoryName="main-course" />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/details/:recipeId" element={<Details />} />
       </Routes>

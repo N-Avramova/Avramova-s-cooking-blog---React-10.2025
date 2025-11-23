@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -17,18 +17,21 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, } from '@heroicons/react/20/solid'
-import { Link } from 'react-router'
-
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#' },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#'},
-  { name: 'Security', description: 'Your customers’ data will be safe and secure' },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#' },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#' },
-]
+import { NavLink, Link } from 'react-router'
+import { fetchDistinctCategories } from '../../services/recipeService'
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+      const fetchCategories = async () => {
+          const distinctCategories = await fetchDistinctCategories();
+          setCategories(distinctCategories);
+      }
+      fetchCategories();
+  }, []);
+
 
   return (
     <header className="bg-white">
@@ -74,13 +77,16 @@ export default function Header() {
               className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg outline-1 outline-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
             >
               <div className="p-4">
-                {products.map((item) => (
+                {categories.map((item) => (
                   <div
                     key={item.name}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                   >                    
                     <div className="flex-auto">
-                      <Link to={item.href} className="block font-semibold text-gray-900">
+                      <Link 
+                        to={`/${item.name}`} 
+                        className="block font-semibold text-gray-900"
+                      >
                         {item.name}
                         <span className="absolute inset-0" />
                       </Link>
@@ -141,15 +147,16 @@ export default function Header() {
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-open:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products].map((item) => (
-                      <DisclosureButton
+                    {[...categories].map((item) => (
+                      <Link
                         key={item.name}
                         as="a"
-                        href={item.href}
+                        to={`/${item.name}`}
+                        onClick={() => setMobileMenuOpen(false)} 
                         className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
                         {item.name}
-                      </DisclosureButton>
+                      </Link>
                     ))}
                   </DisclosurePanel>
                 </Disclosure>

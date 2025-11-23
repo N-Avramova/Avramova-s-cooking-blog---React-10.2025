@@ -11,3 +11,25 @@ export async function fetchRecipeById(recipeId) {
     const data = await response.json();
     return data;
 }
+
+export async function fetchRecipyByCategory(categoryName) {
+    const recipesData = await fetchRecipes();
+    const filteredRecipes = recipesData.filter(recipe => recipe.category && recipe.category.name && recipe.category.name.trim().toLowerCase() === categoryName.trim().toLowerCase());
+    return filteredRecipes;
+}
+
+export async function fetchDistinctCategories() {
+    const recipes = await fetchRecipes();
+    const categories = Array.from(
+        recipes
+            .reduce((map, recipe) => {
+                const key = recipe.category && recipe.category.name ? recipe.category.name.trim().toLowerCase() : null;
+                if (key && !map.has(key)) {
+                    map.set(key, recipe.category);
+                }
+                return map;
+            }, new Map())
+            .values()
+    );
+    return categories;
+}

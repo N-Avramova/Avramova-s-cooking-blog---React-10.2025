@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
 import RecipeHomeItem from "../RecipeHomeItem/RecipeHomeItem";
-import { fetchRecipes } from "../../services/recipeService";
+import { fetchRecipes, fetchRecipyByCategory } from "../../services/recipeService";
 import { fetchComments } from "../../services/commentsService";
 
-export default function Home() {
+export default function Home(
+{
+    categoryName
+}) {
     const [recipes, setRecipes] = useState([]);
     const [commentCounts, setCommentCounts] = useState({});
+
     useEffect(() => {
         const allRecipes = async () => {
-            const recipesData = await fetchRecipes();
+            let recipesData = {};
+            if (categoryName) {// && Object.keys(category).length > 0 && category[0].get('c') !== null) {
+                recipesData = await fetchRecipyByCategory(categoryName);                
+            }
+            else {
+                recipesData = await fetchRecipes();
+            }
+            
             recipesData.sort((a, b) => new Date(b._createdOn) - new Date(a._createdOn));
             setRecipes(recipesData);
             const allComments = await fetchComments();
@@ -20,7 +31,7 @@ export default function Home() {
             setCommentCounts(commentCountsMap);
         }
         allRecipes();
-    }, []);
+    }, [categoryName]);
 
     return (
         <div className="grid grid-cols-1 gap-4 items-center justify-center min-h-screen">
@@ -31,7 +42,7 @@ export default function Home() {
                         recipeId={recipe._id}
                         title={recipe.title}
                         imageUrl={recipe.imageUrl}
-                        category={recipe.category}
+                        category={recipe.category.name}
                         description={recipe.summary}
                         timeToCook={recipe.timeToCook}
                         createdOnValue={recipe._createdOn}

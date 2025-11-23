@@ -1,13 +1,12 @@
 {
     "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a": {
-		    "_id": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "_id": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
         "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
         "title": "Cookies",
         "date": "2015-05-19",
         "imageUrl": "/images/american-heritage-chocolate-DoK5qEy2L60-unsplash.jpg",
         "summary": "Cookies Photo by <a href='https://unsplash.com/@americanheritagechocolate?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>American Heritage Chocolate</a> on <a href='https://unsplash.com/photos/brown-cookies-on-blue-and-white-ceramic-plate-DoK5qEy2L60?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
         "_createdOn": 1617194350000,
-		    "category": "sweet",
         "timeToCook": "30 minutes",
         "ingredients": [
             "2 1/4 cups all-purpose flour",
@@ -19,17 +18,20 @@
             "2 teaspoons pure vanilla extract",
             "2 large eggs",
             "2 cups semisweet and/or milk chocolate chips"
-        ]
+        ],
+        "category": {
+            "name": "sweet",
+            "description": "Dessert recipes including cookies, cakes, and pastries."
+        }
     },
     "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j": {
-            "_id": "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j",
+        "_id": "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j",
         "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
         "title": "Cream of Pumpkin Soup",
         "date": "2022-02-25",
         "imageUrl": "/images/marcin-lampart-ruARLgwX9b8-unsplash.jpg",
         "summary": "Photo by <a href=`https://unsplash.com/@mixshot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText`>Marcin Lampart</a> on <a href=`https://unsplash.com/photos/a-bowl-of-pumpkin-soup-on-a-wooden-table-ruARLgwX9b8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText`>Unsplash</a>\n       A quick and delicious creamy pasta perfect for weeknight dinners.",
         "_createdOn": 1645708800000,
-            "category": "soup",
         "timeToCook": "45 minutes",
         "ingredients": [
             "1 medium pumpkin (about 4 pounds), peeled, seeded, and cut into 1-inch cubes",
@@ -40,7 +42,11 @@
             "2 tablespoons olive oil",
             "Salt and pepper to taste",
             "Fresh thyme for garnish (optional)"
-        ]
+        ],
+        "category": {
+            "name": "soup",
+            "description": "Warm and comforting soup recipes for all seasons."
+        }
     },
     "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p": {
         "_id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
@@ -50,7 +56,6 @@
         "imageUrl": "/images/raphael-nogueira-63mHpYEyjCA-unsplash.jpg",
         "summary": "A classic Caesar Salad with a creamy dressing. Photo by <a href='https://unsplash.com/@phaelnogueira?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Raphael Nogueira</a> on <a href='https://unsplash.com/photos/meat-with-lettuce-on-white-ceramic-plate-63mHpYEyjCA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
         "_createdOn": 1732000000000,
-        "category": "salad",
         "timeToCook": "20 minutes",
         "ingredients": [
             "1 head romaine lettuce, chopped",
@@ -58,17 +63,20 @@
             "1/4 cup grated Parmesan cheese",
             "1/3 cup Caesar dressing",
             "Salt and pepper to taste"
-        ]
+        ],
+        "category": {
+            "name": "salad",
+            "description": "Fresh and healthy salad recipes."
+        }
     },
     "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s": {
-		    "_id": "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s",
+        "_id": "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s",
         "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
         "title": "Salad",
         "date": "2011-11-18",
         "imageUrl": "/images/taylor-kiser-EvoIiaIVRzU-unsplash.jpg",
         "summary": "Salad Photo by <a href='https://unsplash.com/@foodfaithfit?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Taylor Kiser</a> on <a href='https://unsplash.com/photos/vegetable-salad-on-white-ceramic-bowl-EvoIiaIVRzU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
         "_createdOn": 1617194450000,
-		    "category": "salad",
         "timeToCook": "15 minutes",
         "ingredients": [
             "4 cups mixed salad greens",
@@ -80,17 +88,20 @@
             "2 tablespoons olive oil",
             "1 tablespoon balsamic vinegar",
             "Salt and pepper to taste"
-        ]
+        ],
+        "category": {
+            "name": "salad",
+            "description": "Fresh and healthy salad recipes."
+        }
     },
     "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l": {
-		    "_id": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "_id": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
         "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
         "title": "Meatballs",
         "date": "2020-12-10",
         "imageUrl": "/images/reshu-drolia-zPZ3n-2DwHo-unsplash.jpg",
         "summary": "Meatballs Photo by <a href='https://unsplash.com/@mintsrecipes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Reshu Drolia</a> on <a href='https://unsplash.com/photos/fried-food-on-black-ceramic-plate-zPZ3n-2DwHo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
         "_createdOn": 1607558400000,
-		    "category": "main",
         "timeToCook": "1 hour",
         "ingredients": [
             "1 pound ground beef",
@@ -102,6 +113,10 @@
             "1 teaspoon salt",
             "1/2 teaspoon black pepper",
             "2 cups marinara sauce"
-        ]
+        ],
+        "category": {
+            "name": "main-course",
+            "description": "Hearty main course recipes including meat, poultry, and vegetarian dishes."
+        }
     }
 }
