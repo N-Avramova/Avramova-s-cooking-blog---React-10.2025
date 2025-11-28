@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { fetchRecipeById } from "../../services/recipeService";
 import DetailsComments from "../Details/details-comments/DetailsComments";
+import CreateComment from "../Details/create-comment/CreateComments";
 
 export default function Details() {
     const { recipeId } = useParams();
-    const [recipeData, setRecipeData] = useState({});
+    const [recipeData, setRecipeData] = useState({});    
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         const recipeData = async () => {
@@ -14,6 +16,10 @@ export default function Details() {
         }
         recipeData();
     }, [recipeId]);
+
+    const commentRefreshHandler = () => {
+        setRefresh(state => !state);
+    }
 
     return (
         <>
@@ -60,7 +66,8 @@ export default function Details() {
                     </p>
                 </div>
 
-                <DetailsComments recipeId={recipeData._id} />
+                <DetailsComments recipeId={recipeData._id} refresh={refresh} />
+                <CreateComment onCreate={commentRefreshHandler} />
                 <div className="flex justify-center gap-4 mt-6">
                     <button
                         type="button"

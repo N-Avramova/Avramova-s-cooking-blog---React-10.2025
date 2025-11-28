@@ -4,7 +4,8 @@ import { fetchUsersByUserIds } from "../../../services/usersServices";
 import { formattedDate } from "../../../utils/DateConvertion";
 
 export default function DetailsComments({
-    recipeId
+    recipeId,
+    refresh
 }) {
     const [comments, setComments] = useState([]);
 
@@ -12,7 +13,7 @@ export default function DetailsComments({
         const fetchAllComments = async () => {
             const allCommentsValue = await fetchComments();
             const filteredComments = allCommentsValue.filter(
-                comment => comment.recipeId === recipeId
+                comment => comment.recipeId === recipeId && comment.isApproved
             );
             const commentsOwnersData = await fetchUsersByUserIds(filteredComments.map(c => c._ownerId));
             const resultComments = filteredComments.map(comment => {
@@ -26,7 +27,7 @@ export default function DetailsComments({
             setComments(resultComments);
         };
         fetchAllComments();
-    }, [recipeId]);
+    }, [recipeId, refresh]);
 
     return (
         <>
