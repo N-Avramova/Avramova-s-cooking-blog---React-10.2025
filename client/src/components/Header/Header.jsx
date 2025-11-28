@@ -17,30 +17,36 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, } from '@heroicons/react/20/solid'
-import { NavLink, Link } from 'react-router'
+import { Link } from 'react-router'
 import { fetchDistinctCategories } from '../../services/recipeService'
 
-export default function Header() {
+export default function Header(
+  {
+    userId
+  }
+) {
+
+  console.log('Header userId:', userId);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-      const fetchCategories = async () => {
-          const distinctCategories = await fetchDistinctCategories();
-          setCategories(distinctCategories);
-      }
-      fetchCategories();
+    const fetchCategories = async () => {
+      const distinctCategories = await fetchDistinctCategories();
+      setCategories(distinctCategories);
+    }
+    fetchCategories();
   }, []);
 
 
   return (
     <header className="bg-white">
-       <div className="mx-auto w-full max-w-3xl flex flex-col items-center text-center">
-            <h2 className="text-lg font-bold text-gray-900">Welcome to Avramova's Cooking Blog!</h2>
-            <p className="text-sm text-gray-600">
-              Discover delicious recipes, cooking tips, and culinary inspiration from around the world.
-            </p>
-          </div>
+      <div className="mx-auto w-full max-w-3xl flex flex-col items-center text-center">
+        <h2 className="text-lg font-bold text-gray-900">Welcome to Avramova's Cooking Blog!</h2>
+        <p className="text-sm text-gray-600">
+          Discover delicious recipes, cooking tips, and culinary inspiration from around the world.
+        </p>
+      </div>
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex items-center lg:flex-1">
           <Link href="#" className="-m-1.5 p-1.5">
@@ -50,7 +56,7 @@ export default function Header() {
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
               className="h-8 w-auto"
             />
-          </Link>         
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -81,10 +87,10 @@ export default function Header() {
                   <div
                     key={item.name}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
-                  >                    
+                  >
                     <div className="flex-auto">
-                      <Link 
-                        to={`/${item.name}`} 
+                      <Link
+                        to={`/${item.name}`}
                         className="block font-semibold text-gray-900"
                       >
                         {item.name}
@@ -101,17 +107,32 @@ export default function Header() {
           <Link to="/contact" className="text-sm/6 font-semibold text-gray-900">
             Contact
           </Link>
-          <Link to="/comments" className="text-sm/6 font-semibold text-gray-900">
-            Comments
-          </Link>          
-          <Link href="/admin" className="text-sm/6 font-semibold text-gray-900">
-            Admin
-          </Link>
+          {
+            userId && (
+              <>
+                <Link to="/comments" className="text-sm/6 font-semibold text-gray-900">
+                  Comments
+                </Link>
+
+                <Link to="/admin" className="text-sm/6 font-semibold text-gray-900">
+                  Admin
+                </Link>
+              </>
+            )
+          }
+
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/login" className="text-sm/6 font-semibold text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {
+            !userId ? (
+              <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
+                Log in <span aria-hidden="true">&rarr;</span>
+              </Link>
+            ) : (
+              <Link to="/logout" className="text-sm/6 font-semibold text-gray-900">
+                Logout <span aria-hidden="true">&rarr;</span>
+              </Link>
+            )}
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -152,7 +173,7 @@ export default function Header() {
                         key={item.name}
                         as="a"
                         to={`/${item.name}`}
-                        onClick={() => setMobileMenuOpen(false)} 
+                        onClick={() => setMobileMenuOpen(false)}
                         className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
                         {item.name}
@@ -166,26 +187,42 @@ export default function Header() {
                 >
                   Contact
                 </Link>
-                <Link
-                  to="/comments"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Comments
-                </Link>                
-                <Link
-                  href="/admin"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Admin
-                </Link>
+                {
+                  userId && (
+                    <>
+                      <Link
+                        to="/comments"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                      >
+                        Comments
+                      </Link>
+                      <Link
+                        href="/admin"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                      >
+                        Admin
+                      </Link>
+                    </>
+                  )
+                }
               </div>
               <div className="py-6">
-                <Link
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
+                {
+                  !userId ? (
+                    <Link
+                      to="/login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    >
+                      Log in
+                    </Link>
+                  ) : (
+                    <Link
+                      to="/logout"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    >
+                      Logout
+                    </Link>
+                  )}
               </div>
             </div>
           </div>

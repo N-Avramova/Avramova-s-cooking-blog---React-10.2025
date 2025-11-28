@@ -23,7 +23,6 @@ export default function Home(
             recipesData.sort((a, b) => new Date(b._createdOn) - new Date(a._createdOn));
             setRecipes(recipesData);
             const allComments = await fetchComments();
-            console.log(allComments);
             const commentCountsMap = {};
             recipesData.forEach(recipe => {
                 commentCountsMap[recipe._id] = allComments.filter(comment => comment.recipeId === recipe._id).length;

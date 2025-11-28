@@ -14,4 +14,10 @@ export async function fetchUserByEmail(email) {
     const usersArray = Object.values(data);
     const user = usersArray.find(user => user.email === email);
     return user?._id;
-}   
+}  
+
+export async function fetchAllUsers() {
+    const response = await fetch(`${baseUrl}/jsonstore/users`);
+    const data = await response.json();
+    return Object.values(data);
+}

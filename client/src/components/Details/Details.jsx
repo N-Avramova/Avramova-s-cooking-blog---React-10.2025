@@ -4,9 +4,13 @@ import { fetchRecipeById } from "../../services/recipeService";
 import DetailsComments from "../Details/details-comments/DetailsComments";
 import CreateComment from "../Details/create-comment/CreateComments";
 
-export default function Details() {
+export default function Details(
+    {
+        userId
+    }
+) {
     const { recipeId } = useParams();
-    const [recipeData, setRecipeData] = useState({});    
+    const [recipeData, setRecipeData] = useState({});
     const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
@@ -68,22 +72,27 @@ export default function Details() {
 
                 <DetailsComments recipeId={recipeData._id} refresh={refresh} />
                 <CreateComment onCreate={commentRefreshHandler} />
-                <div className="flex justify-center gap-4 mt-6">
-                    <button
-                        type="button"
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow"
-                        onClick={() => { /* TODO: implement edit action (navigate/open form) */ }}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        type="button"
-                        className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-md shadow"
-                        onClick={() => { /* TODO: implement delete action (confirm & delete) */ }}
-                    >
-                        Delete
-                    </button>
-                </div>
+                {
+                    userId && (
+                        <div className="flex justify-center gap-4 mt-6">
+                            <button
+                                type="button"
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow"
+                                onClick={() => { /* TODO: implement edit action (navigate/open form) */ }}
+                            >
+                                Edit
+                            </button>
+                            <button
+                                type="button"
+                                className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-md shadow"
+                                onClick={() => { /* TODO: implement delete action (confirm & delete) */ }}
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    )
+                }
+
             </div>
         </>
     )
