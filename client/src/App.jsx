@@ -8,6 +8,8 @@ import Details from './components/Details/Details';
 import Login from './components/Login/Login';
 import { fetchAllUsers } from './services/usersServices';
 import Logout from './components/Logout/Logout';
+import AdminComments from './components/AdminComments/AdminComments';
+import AuthGuard from './components/RouteGuard/RouteGuard';
 
 function App() {
 
@@ -47,6 +49,9 @@ function App() {
         <Route path="/main-course" element={<Home categoryName="main-course" />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/details/:recipeId" element={<Details userId={userId} />} />
+        <Route element={<AuthGuard userId={userId} />}>
+          <Route path="/comments-admin" element={<AdminComments />} />
+        </Route>
         <Route path="/login" element={<Login onLogin={loginHandler} />} />
         <Route path="/logout" element={<Logout onLogout={logoutHandler} />} />
       </Routes>

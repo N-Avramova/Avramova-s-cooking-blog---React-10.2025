@@ -110,8 +110,8 @@ export default function Header(
           {
             userId && (
               <>
-                <Link to="/comments" className="text-sm/6 font-semibold text-gray-900">
-                  Comments
+                <Link to="/comments-admin" className="text-sm/6 font-semibold text-gray-900">
+                  Admin Comments
                 </Link>
 
                 <Link to="/admin" className="text-sm/6 font-semibold text-gray-900">
@@ -191,10 +191,10 @@ export default function Header(
                   userId && (
                     <>
                       <Link
-                        to="/comments"
+                        to="/comments-admin"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
-                        Comments
+                        Admin Comments
                       </Link>
                       <Link
                         href="/admin"
