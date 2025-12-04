@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router";
 
 export default function AuthGuard({
-    userId,
+    user,
 }) {
-    if (!userId) {
+    if (!user) {
         return <Navigate to="/login" />
     }
 

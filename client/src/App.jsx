@@ -13,7 +13,7 @@ import AuthGuard from './components/RouteGuard/RouteGuard';
 
 function App() {
 
-  const [userId, setUserId] = useState(null);
+  const [user, setUser] = useState(null);
   const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
@@ -30,16 +30,16 @@ function App() {
 
     const user = allUsers.find(user => user.email === email && user.password === password);
 
-    setUserId(user?._id);
+    setUser(user);
   };
 
   const logoutHandler = () => {
-    setUserId(null);
+    setUser(null);
   };
 
   return (
     <>
-      <Header userId={userId} />
+      <Header user={user} />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -48,8 +48,8 @@ function App() {
         <Route path="/salad" element={<Home categoryName="salad" />} />
         <Route path="/main-course" element={<Home categoryName="main-course" />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/details/:recipeId" element={<Details userId={userId} />} />
-        <Route element={<AuthGuard userId={userId} />}>
+        <Route path="/details/:recipeId" element={<Details user={user} />} />
+        <Route element={<AuthGuard user={user}  />}>
           <Route path="/comments-admin" element={<AdminComments />} />
         </Route>
         <Route path="/login" element={<Login onLogin={loginHandler} />} />

@@ -5,7 +5,8 @@
         "lastName": "Ivanov",
         "email": "123@ddd.cc",
         "_createdOn": 1617194350000,
-        "password": "12345"
+        "password": "12345",
+        "isAdmin": true
     },
     "847ec027-f659-4086-8032-5173e2f9c93a": {
 		"_id": "847ec027-f659-4086-8032-5173e2f9c93a",
@@ -13,6 +14,7 @@
         "lastName": "Petrov",
         "email": "rtr@dr.gn",
         "_createdOn": 1617194350000,
-        "password": "54321"
+        "password": "54321",
+        "isAdmin": false
     }
 }

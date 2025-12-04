@@ -22,11 +22,11 @@ import { fetchDistinctCategories } from '../../services/recipeService'
 
 export default function Header(
   {
-    userId
+    user
   }
 ) {
 
-  console.log('Header userId:', userId);
+  console.log('Header user:', user);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -108,7 +108,7 @@ export default function Header(
             Contact
           </Link>
           {
-            userId && (
+            user && user.isAdmin && (
               <>
                 <Link to="/comments-admin" className="text-sm/6 font-semibold text-gray-900">
                   Admin Comments
@@ -124,7 +124,7 @@ export default function Header(
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {
-            !userId ? (
+            !user ? (
               <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
                 Log in <span aria-hidden="true">&rarr;</span>
               </Link>
@@ -188,7 +188,7 @@ export default function Header(
                   Contact
                 </Link>
                 {
-                  userId && (
+                  user && user.isAdmin && (
                     <>
                       <Link
                         to="/comments-admin"
@@ -208,7 +208,7 @@ export default function Header(
               </div>
               <div className="py-6">
                 {
-                  !userId ? (
+                  !user ? (
                     <Link
                       to="/login"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"

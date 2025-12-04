@@ -6,7 +6,7 @@ import CreateComment from "../Details/create-comment/CreateComments";
 
 export default function Details(
     {
-        userId
+        user
     }
 ) {
     const { recipeId } = useParams();
@@ -73,7 +73,7 @@ export default function Details(
                 <DetailsComments recipeId={recipeData._id} refresh={refresh} />
                 <CreateComment onCreate={commentRefreshHandler} />
                 {
-                    userId && (
+                    user && user.isAdmin && (
                         <div className="flex justify-center gap-4 mt-6">
                             <button
                                 type="button"
