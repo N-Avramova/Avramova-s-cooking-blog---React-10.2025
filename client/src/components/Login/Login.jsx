@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router';
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 
-export default function Login(
-    {
-        onLogin
-    }
-) {
+export default function Login() {
 
     const navigate = useNavigate();
+    
+    const { loginHandler } = useContext(UserContext);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ export default function Login(
         }
 
         try {
-            onLogin(email, password);
+            loginHandler(email, password);
             navigate('/');
         } catch (err) {
             alert(err.message);

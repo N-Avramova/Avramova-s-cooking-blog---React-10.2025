@@ -19,16 +19,14 @@ import {
 import { ChevronDownIcon, } from '@heroicons/react/20/solid'
 import { Link } from 'react-router'
 import { fetchDistinctCategories } from '../../services/recipeService'
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 
-export default function Header(
-  {
-    user
-  }
-) {
-
-  console.log('Header user:', user);
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+  
+    const { user, isAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -108,7 +106,7 @@ export default function Header(
             Contact
           </Link>
           {
-            user && user.isAdmin && (
+            isAuthenticated && (
               <>
                 <Link to="/comments-admin" className="text-sm/6 font-semibold text-gray-900">
                   Admin Comments
@@ -188,7 +186,7 @@ export default function Header(
                   Contact
                 </Link>
                 {
-                  user && user.isAdmin && (
+                  isAuthenticated && (
                     <>
                       <Link
                         to="/comments-admin"
