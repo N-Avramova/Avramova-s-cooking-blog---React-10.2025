@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { fetchRecipeById } from "../../services/recipeService";
+import { useParams, useNavigate, Link } from "react-router";
+import { fetchRecipeById, deleteRecipe } from "../../services/recipeService";
 import DetailsComments from "../Details/details-comments/DetailsComments";
 import CreateComment from "../Details/create-comment/CreateComments";
 
@@ -11,7 +11,8 @@ export default function Details(
 ) {
     const { recipeId } = useParams();
     const [recipeData, setRecipeData] = useState({});
-    const [refresh, setRefresh] = useState(false);
+    const [refresh, setRefresh] = useState(false);    
+    const navigate = useNavigate();
 
     useEffect(() => {
         const recipeData = async () => {
@@ -23,6 +24,17 @@ export default function Details(
 
     const commentRefreshHandler = () => {
         setRefresh(state => !state);
+    }
+
+    const deleteRecipeHandler = async () => {
+        const isConfirmed = confirm(`Are you sure you want to delete recipe: ${recipeData.title}`);
+
+        if (!isConfirmed) {
+            return;
+        }
+        const result = await deleteRecipe(recipeData.recipeId);
+        console.log(result);
+        navigate('/');
     }
 
     return (
@@ -81,14 +93,13 @@ export default function Details(
                                 onClick={() => { /* TODO: implement edit action (navigate/open form) */ }}
                             >
                                 Edit
-                            </button>
-                            <button
-                                type="button"
-                                className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-md shadow"
-                                onClick={() => { /* TODO: implement delete action (confirm & delete) */ }}
-                            >
-                                Delete
-                            </button>
+                            </button> 
+                            <Link 
+                                to={`/${recipeData._id}/edit`} 
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow">
+                                    Edit
+                            </Link>                            
+                            <button className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700" onClick={deleteRecipeHandler}>Delete</button>
                         </div>
                     )
                 }

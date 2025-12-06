@@ -33,3 +33,8 @@ export async function fetchDistinctCategories() {
     );
     return categories;
 }
+
+export async function deleteRecipe(recipeId) {
+    const recipes = await fetchRecipes();
+    return recipes.filter((item) => item.recipeId !== recipeId);
+}

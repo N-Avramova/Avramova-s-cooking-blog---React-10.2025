@@ -25,8 +25,8 @@ import UserContext from '../../contexts/UserContext';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  
-    const { user, isAuthenticated } = useContext(UserContext);
+
+  const { user, isAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -102,9 +102,7 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          <Link to="/contact" className="text-sm/6 font-semibold text-gray-900">
-            Contact
-          </Link>
+
           {
             isAuthenticated && (
               <>
@@ -112,12 +110,15 @@ export default function Header() {
                   Admin Comments
                 </Link>
 
-                <Link to="/admin" className="text-sm/6 font-semibold text-gray-900">
-                  Admin
+                <Link to="/create-recipe" className="text-sm/6 font-semibold text-gray-900">
+                  Create Recipe
                 </Link>
               </>
             )
           }
+          <Link to="/contact" className="text-sm/6 font-semibold text-gray-900">
+            Contact
+          </Link>
 
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -179,12 +180,7 @@ export default function Header() {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <Link
-                  to="/contact"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Contact
-                </Link>
+
                 {
                   isAuthenticated && (
                     <>
@@ -195,14 +191,20 @@ export default function Header() {
                         Admin Comments
                       </Link>
                       <Link
-                        href="/admin"
+                        href="/create-recipe"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
-                        Admin
+                        Create Recipe
                       </Link>
                     </>
                   )
                 }
+                <Link
+                  to="/contact"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                >
+                  Contact
+                </Link>
               </div>
               <div className="py-6">
                 {

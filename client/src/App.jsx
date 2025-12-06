@@ -10,6 +10,8 @@ import AdminComments from './components/AdminComments/AdminComments';
 import AuthGuard from './components/RouteGuard/RouteGuard';
 import { useContext } from 'react';
 import UserContext from './contexts/UserContext.jsx';
+import Edit from './components/Edit/Edit.jsx';
+import CreateRecipe from './components/CreateRecipe/CreateRecipe.jsx';
 
 function App() {  
     const { user } = useContext(UserContext);
@@ -25,8 +27,10 @@ function App() {
           <Route path="/salad" element={<Home categoryName="salad" />} />
           <Route path="/main-course" element={<Home categoryName="main-course" />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/details/:recipeId" element={<Details user={user} />} />
+          <Route path="/details/:recipeId" element={<Details user={user} />} />          
           <Route element={<AuthGuard user={user} />}>
+            <Route path="/:recipeId/edit" element={<Edit />} />
+            <Route path="/create-recipe" element={<CreateRecipe />} />
             <Route path="/comments-admin" element={<AdminComments />} />
           </Route>
           <Route path="/login" element={<Login />} />
