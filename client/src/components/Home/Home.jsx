@@ -1,24 +1,15 @@
 import { useEffect } from "react";
 import RecipeHomeItem from "../RecipeHomeItem/RecipeHomeItem";
-// import { fetchRecipes, fetchRecipyByCategory } from "../../services/recipeService";
-// import { fetchComments } from "../../services/commentsService";
 import useRequest from '../../hooks/useRequest'
 
 export default function Home(
     {
         categoryName
     }) {
-    //const [recipes, setRecipes] = useState([]);
-    //const [commentCounts, setCommentCounts] = useState({});
-    //const { requestData } = useRequest();
 
-   const { data: recipes } = useRequest('data/recipes?',[]);
-
- //const recipes = [];
+   const { data: recipes } = useRequest('data/recipes?sortBy=_createdOn%20desc',[]);
 
     useEffect(() => {
-    //(`/data/games?sortBy=_createdOn%20desc&pageSize=3`, []);
-console.log(recipes); 
         // const getRecipes = async () => {
         //     const response = await fetch('http://localhost:3030/data/recipes', {
         //         method: 'GET',
@@ -69,7 +60,6 @@ console.log(recipes);
                         timeToCook={recipe.timeToCook}
                         createdOnValue={recipe._createdOn}
                         commentCount={0}
-                    //commentCount={commentCounts[recipe._id] || 0}
                     />
                 </div>
             )

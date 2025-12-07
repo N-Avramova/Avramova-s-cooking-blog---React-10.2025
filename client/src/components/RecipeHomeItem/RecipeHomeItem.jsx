@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { formattedDate } from "../../utils/DateConvertion";
+import useRequest from '../../hooks/useRequest'
 
 export default function RecipeHomeItem(
     {
@@ -9,10 +10,13 @@ export default function RecipeHomeItem(
         category,
         description,
         timeToCook,
-        createdOnValue,
-        commentCount
+        createdOnValue
     }
 ) {
+
+    const { data: comments } = useRequest(`data/comments?where=recipeId%3D"${recipeId}"`, []);
+
+
     return (
 
         <div className="main-content w-4/5 mx-auto">
@@ -40,7 +44,7 @@ export default function RecipeHomeItem(
                 <div class="flex items-center justify-between mb-3">
                     <span class="text-sm text-gray-500">⏱️ {timeToCook}</span>
                     <span class="text-sm text-gray-500">📅 {formattedDate(createdOnValue)}</span>
-                    <span class="text-sm text-gray-500">💬 {commentCount} comments</span>
+                    <span class="text-sm text-gray-500">💬 {comments.length} comments</span>
                 </div>
 
                 <Link

@@ -1456,6 +1456,89 @@
         }
     }, 
        
+    },
+    comments: {
+         "d4c1b0c9-0c76-4b6b-8c1c-2e3c497e0f12": {
+		"_id": "d4c1b0c9-0c76-4b6b-8c1c-2e3c497e0f12",
+		"recipeId": "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j",
+        "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "date": "2015-05-19",
+        "text": "Good",
+        "_createdOn": 1617194350000,
+        "isApproved": true      
+    },
+    "a93d55e2-39e7-4c8d-9f1e-1fce0e6bfbb3": {
+		"_id": "a93d55e2-39e7-4c8d-9f1e-1fce0e6bfbb3",
+		"recipeId": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2022-02-25",
+        "text": "Well done",
+        "_createdOn": 1645708800000,
+        "isApproved": false
+    },
+    "f2e2cb0f-5f77-4428-97c9-2ea88c2b28ad": {
+		"_id": "f2e2cb0f-5f77-4428-97c9-2ea88c2b28ad",
+		"recipeId": "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j",
+        "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "date": "2011-11-18",
+        "text": "OK",
+        "_createdOn": 1617194450000,
+        "isApproved": true
+    },
+    "7be4f0e4-b1f5-4764-8577-4b45a3cfdccd": {
+		"_id": "7be4f0e4-b1f5-4764-8577-4b45a3cfdccd",
+		"recipeId": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2020-12-10",
+        "text": "Good again",
+        "_createdOn": 1607558400000,
+        "isApproved": false
+    },
+    "c09f6c0c-54c4-48ac-92e0-024fd496b1b0": {
+		"_id": "c09f6c0c-54c4-48ac-92e0-024fd496b1b0",
+		"recipeId": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2020-12-10",
+        "text": "Will be tested",
+        "_createdOn": 1607558400000,
+        "isApproved": true
+    },
+    "3b6d61b1-a2b2-4fda-ae3f-64f7b890ef03": {
+		"_id": "3b6d61b1-a2b2-4fda-ae3f-64f7b890ef03",
+		"recipeId": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2020-12-10",
+        "text": "Not to bad",
+        "_createdOn": 1607558400000,
+        "isApproved": true
+    },
+    "89ff2bb5-9321-44de-880b-01dc9617c4b4": {
+		"_id": "89ff2bb5-9321-44de-880b-01dc9617c4b4",
+		"recipeId": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2020-12-10",
+        "text": "Positive",
+        "_createdOn": 1607558400000,
+        "isApproved": true
+    },
+    "5fe5c317-e0f9-492a-906d-9842e96fb48f": {
+		"_id": "5fe5c317-e0f9-492a-906d-9842e96fb48f",
+		"recipeId": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2020-12-10",
+        "text": "Too simple",
+        "_createdOn": 1607558400000,
+        "isApproved": true
+    },
+	 "e6cc1d79-85c9-4c58-af88-50bb2a3c550a": {
+		"_id": "e6cc1d79-85c9-4c58-af88-50bb2a3c550a",
+		"recipeId": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "date": "2020-12-10",
+        "text": "Good recipe",
+        "_createdOn": 1607558400000,
+        "isApproved": true
+    }
     }
     };
     var rules$1 = {
