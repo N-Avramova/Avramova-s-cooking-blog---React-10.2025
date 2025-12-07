@@ -1334,51 +1334,129 @@
     };
     var seedData = {
         
-        games: {
-           "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "title": "The Witcher 3",
-            "genre": "Open World",
-            "players": 32000,
-            "date": "2015-05-19",
-            "imageUrl": "/images/witcher.png",
-            "summary": "A story-driven, open world fantasy RPG. Play as Geralt of Rivia, a monster slayer for hire, who must find the Child of Prophecy in a vast, war-torn world. The game is known for its morally gray choices, mature storyline, and expansive world exploration.",
-            "_createdOn": 1617194350000
-        },
-        "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "title": "Elden Ring",
-            "genre": "Action RPG",
-            "players": 105000,
-            "date": "2022-02-25",
-            "imageUrl": "/images/elden ring.png",
-            "summary": "A monumental fantasy action RPG developed by FromSoftware and Bandai Namco. Set in the Lands Between, players embark on an epic quest to become the Elden Lord, exploring a vast open world designed by Hidetaka Miyazaki, with worldbuilding contributed by fantasy author George R. R. Martin.",
-            "_createdOn": 1645708800000
-        },
-        "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "title": "Minecraft",
-            "genre": "Sandbox",
-            "players": 1400000,
-            "date": "2011-11-18",
-            "imageUrl": "/images/minecraft.png",
-            "summary": "Minecraft is a sandbox video game where players explore a blocky, procedurally generated 3D world with infinite terrain. Players may discover and extract raw materials, craft tools and items, and build structures, earthworks and simple machines.",
-            "_createdOn": 1617194450000
-        },
-        "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "title": "Cyberpunk 2077",
-            "genre": "Action RPG",
-            "players": 85000,
-            "date": "2020-12-10",
-            "imageUrl": "/images/cyberpunk.png",
-            "summary": "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality.",
-            "_createdOn": 1607558400000
-            }
-        },
-        comments: {
-        
+        recipes: {           
+        "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a": {
+        "_id": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "title": "Cookies",
+        "date": "2015-05-19",
+        "imageUrl": "/images/american-heritage-chocolate-DoK5qEy2L60-unsplash.jpg",
+        "summary": "Cookies Photo by <a href='https://unsplash.com/@americanheritagechocolate?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>American Heritage Chocolate</a> on <a href='https://unsplash.com/photos/brown-cookies-on-blue-and-white-ceramic-plate-DoK5qEy2L60?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
+        "_createdOn": 1617194350000,
+        "timeToCook": "30 minutes",
+        "ingredients": [
+            "2 1/4 cups all-purpose flour",
+            "1/2 teaspoon baking soda",
+            "1 cup unsalted butter, room temperature",
+            "1/2 cup granulated sugar",
+            "1 cup packed light-brown sugar",
+            "1 teaspoon salt",
+            "2 teaspoons pure vanilla extract",
+            "2 large eggs",
+            "2 cups semisweet and/or milk chocolate chips"
+        ],
+        "category": {
+            "name": "sweet",
+            "description": "Dessert recipes including cookies, cakes, and pastries."
         }
+    },        
+    "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j": {
+        "_id": "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "title": "Cream of Pumpkin Soup",
+        "date": "2022-02-25",
+        "imageUrl": "/images/marcin-lampart-ruARLgwX9b8-unsplash.jpg",
+        "summary": "Photo by <a href=`https://unsplash.com/@mixshot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText`>Marcin Lampart</a> on <a href=`https://unsplash.com/photos/a-bowl-of-pumpkin-soup-on-a-wooden-table-ruARLgwX9b8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText`>Unsplash</a>\n       A quick and delicious creamy pasta perfect for weeknight dinners.",
+        "_createdOn": 1645708800000,
+        "timeToCook": "45 minutes",
+        "ingredients": [
+            "1 medium pumpkin (about 4 pounds), peeled, seeded, and cut into 1-inch cubes",
+            "1 large onion, chopped",
+            "2 cloves garlic, minced",
+            "4 cups vegetable broth",
+            "1 cup heavy cream",
+            "2 tablespoons olive oil",
+            "Salt and pepper to taste",
+            "Fresh thyme for garnish (optional)"
+        ],
+        "category": {
+            "name": "soup",
+            "description": "Warm and comforting soup recipes for all seasons."
+        }
+    },
+    "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p": {
+        "_id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+        "_ownerId": "12345678-90ab-cdef-1234-567890abcdef",
+        "title": "Caesar Salad",
+        "date": "2025-11-19",
+        "imageUrl": "/images/raphael-nogueira-63mHpYEyjCA-unsplash.jpg",
+        "summary": "A classic Caesar Salad with a creamy dressing. Photo by <a href='https://unsplash.com/@phaelnogueira?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Raphael Nogueira</a> on <a href='https://unsplash.com/photos/meat-with-lettuce-on-white-ceramic-plate-63mHpYEyjCA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
+        "_createdOn": 1732000000000,
+        "timeToCook": "20 minutes",
+        "ingredients": [
+            "1 head romaine lettuce, chopped",
+            "1/2 cup croutons",
+            "1/4 cup grated Parmesan cheese",
+            "1/3 cup Caesar dressing",
+            "Salt and pepper to taste"
+        ],
+        "category": {
+            "name": "salad",
+            "description": "Fresh and healthy salad recipes."
+        }
+    },
+    "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s": {
+        "_id": "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s",
+        "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "title": "Salad",
+        "date": "2011-11-18",
+        "imageUrl": "/images/taylor-kiser-EvoIiaIVRzU-unsplash.jpg",
+        "summary": "Salad Photo by <a href='https://unsplash.com/@foodfaithfit?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Taylor Kiser</a> on <a href='https://unsplash.com/photos/vegetable-salad-on-white-ceramic-bowl-EvoIiaIVRzU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
+        "_createdOn": 1617194450000,
+        "timeToCook": "15 minutes",
+        "ingredients": [
+            "4 cups mixed salad greens",
+            "1 cup cherry tomatoes, halved",
+            "1 cucumber, sliced",
+            "1/2 red onion, thinly sliced",
+            "1/4 cup feta cheese, crumbled",
+            "1/4 cup olives",
+            "2 tablespoons olive oil",
+            "1 tablespoon balsamic vinegar",
+            "Salt and pepper to taste"
+        ],
+        "category": {
+            "name": "salad",
+            "description": "Fresh and healthy salad recipes."
+        }
+    },
+    "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l": {
+        "_id": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "title": "Meatballs",
+        "date": "2020-12-10",
+        "imageUrl": "/images/reshu-drolia-zPZ3n-2DwHo-unsplash.jpg",
+        "summary": "Meatballs Photo by <a href='https://unsplash.com/@mintsrecipes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Reshu Drolia</a> on <a href='https://unsplash.com/photos/fried-food-on-black-ceramic-plate-zPZ3n-2DwHo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>",
+        "_createdOn": 1607558400000,
+        "timeToCook": "1 hour",
+        "ingredients": [
+            "1 pound ground beef",
+            "1/2 cup breadcrumbs",
+            "1/4 cup grated Parmesan cheese",
+            "1/4 cup chopped fresh parsley",
+            "1 large egg",
+            "2 cloves garlic, minced",
+            "1 teaspoon salt",
+            "1/2 teaspoon black pepper",
+            "2 cups marinara sauce"
+        ],
+        "category": {
+            "name": "main-course",
+            "description": "Hearty main course recipes including meat, poultry, and vegetarian dishes."
+        }
+    }, 
+       
+    }
     };
     var rules$1 = {
         users: {

@@ -1,5 +1,8 @@
 
 export function formattedDate(createdOn) {
+    if(createdOn == undefined) {
+        return "";
+    }
 
     if (typeof createdOn === "number") {
         createdOn = new Date(Number(createdOn));  

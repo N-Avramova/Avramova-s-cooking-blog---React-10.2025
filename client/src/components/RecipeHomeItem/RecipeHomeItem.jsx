@@ -34,7 +34,7 @@ export default function RecipeHomeItem(
                 </h2>
 
                 <p class="text-gray-600 text-sm mb-4">
-                    {description.length > 100 ? description.slice(0, 100) + '...' : description}
+                    {description?.length > 100 ? description.slice(0, 100) + '...' : description}
                 </p>
 
                 <div class="flex items-center justify-between mb-3">
