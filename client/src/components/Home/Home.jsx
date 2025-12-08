@@ -21,7 +21,7 @@ export default function Home(
                         recipeId={recipe._id}
                         title={recipe.title}
                         imageUrl={recipe.imageUrl}
-                        category={recipe.category?.name}
+                        category={recipe.categoryName}
                         description={recipe.summary}
                         timeToCook={recipe.timeToCook}
                         createdOnValue={recipe._createdOn}
