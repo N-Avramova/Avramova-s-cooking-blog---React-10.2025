@@ -1544,6 +1544,26 @@
         "_createdOn": 1607558400000,
         "isApproved": true
     }
+    },
+    users: {
+         "35c62d76-8152-4626-8712-eeb96381bea8": {
+		"_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "firstName": "Ivan",
+        "lastName": "Ivanov",
+        "email": "123@ddd.cc",
+        "_createdOn": 1617194350000,
+        "password": "12345",
+        "isAdmin": true
+    },
+    "847ec027-f659-4086-8032-5173e2f9c93a": {
+		"_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "firstName": "Plamen",
+        "lastName": "Petrov",
+        "email": "rtr@dr.gn",
+        "_createdOn": 1617194350000,
+        "password": "54321",
+        "isAdmin": false
+    }
     }
     };
     var rules$1 = {

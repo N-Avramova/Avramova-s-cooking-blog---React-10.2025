@@ -12,6 +12,7 @@ import { useContext } from 'react';
 import UserContext from './contexts/UserContext.jsx';
 import Edit from './components/Edit/Edit.jsx';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe.jsx';
+import Register from './components/Register/Register.jsx';
 
 function App() {  
     const { user } = useContext(UserContext);
@@ -32,7 +33,8 @@ function App() {
             <Route path="/:recipeId/edit" element={<Edit />} />
             <Route path="/create-recipe" element={<CreateRecipe />} />
             <Route path="/comments-admin" element={<AdminComments />} />
-          </Route>
+          </Route>          
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>

@@ -26,7 +26,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
-  const { user, isAuthenticated } = useContext(UserContext);
+  const { user, isAuthenticated, isAdmin } = useContext(UserContext);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -102,23 +102,29 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-
+          {
+            isAdmin && (
+              <Link to="/comments-admin" className="text-sm/6 font-semibold text-gray-900">
+                Admin Comments
+              </Link>
+            )
+          }
           {
             isAuthenticated && (
-              <>
-                <Link to="/comments-admin" className="text-sm/6 font-semibold text-gray-900">
-                  Admin Comments
-                </Link>
-
-                <Link to="/create-recipe" className="text-sm/6 font-semibold text-gray-900">
-                  Create Recipe
-                </Link>
-              </>
+              <Link to="/create-recipe" className="text-sm/6 font-semibold text-gray-900">
+                Create Recipe
+              </Link>
             )
           }
           <Link to="/contact" className="text-sm/6 font-semibold text-gray-900">
             Contact
           </Link>
+          {
+            !isAuthenticated && (
+              <Link to="/register" className="text-sm/6 font-semibold text-gray-900">
+                Register
+              </Link>
+            )}
 
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -182,21 +188,17 @@ export default function Header() {
                 </Disclosure>
 
                 {
+                  isAdmin && (
+                    <Link to="/comments-admin" className="text-sm/6 font-semibold text-gray-900">
+                      Admin Comments
+                    </Link>
+                  )
+                }
+                {
                   isAuthenticated && (
-                    <>
-                      <Link
-                        to="/comments-admin"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                      >
-                        Admin Comments
-                      </Link>
-                      <Link
-                        href="/create-recipe"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                      >
-                        Create Recipe
-                      </Link>
-                    </>
+                    <Link to="/create-recipe" className="text-sm/6 font-semibold text-gray-900">
+                      Create Recipe
+                    </Link>
                   )
                 }
                 <Link
@@ -205,6 +207,12 @@ export default function Header() {
                 >
                   Contact
                 </Link>
+                {
+                  !isAuthenticated && (
+                    <Link to="/register" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                      Register
+                    </Link>
+                  )}
               </div>
               <div className="py-6">
                 {
