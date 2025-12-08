@@ -1355,6 +1355,7 @@
             "2 large eggs",
             "2 cups semisweet and/or milk chocolate chips"
         ],
+        "categoryName" : "sweet",
         "category": {
             "name": "sweet",
             "description": "Dessert recipes including cookies, cakes, and pastries."
@@ -1378,7 +1379,8 @@
             "2 tablespoons olive oil",
             "Salt and pepper to taste",
             "Fresh thyme for garnish (optional)"
-        ],
+        ],        
+        "categoryName" : "soup",
         "category": {
             "name": "soup",
             "description": "Warm and comforting soup recipes for all seasons."
@@ -1399,7 +1401,8 @@
             "1/4 cup grated Parmesan cheese",
             "1/3 cup Caesar dressing",
             "Salt and pepper to taste"
-        ],
+        ],        
+        "categoryName" : "salad",
         "category": {
             "name": "salad",
             "description": "Fresh and healthy salad recipes."
@@ -1425,6 +1428,7 @@
             "1 tablespoon balsamic vinegar",
             "Salt and pepper to taste"
         ],
+        "categoryName" : "salad",
         "category": {
             "name": "salad",
             "description": "Fresh and healthy salad recipes."
@@ -1450,6 +1454,7 @@
             "1/2 teaspoon black pepper",
             "2 cups marinara sauce"
         ],
+        "categoryName" : "main-course",
         "category": {
             "name": "main-course",
             "description": "Hearty main course recipes including meat, poultry, and vegetarian dishes."
