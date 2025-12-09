@@ -1,26 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router";
-import { fetchRecipeById, deleteRecipe } from "../../services/recipeService";
+import { deleteRecipe } from "../../services/recipeService";
 import DetailsComments from "../Details/details-comments/DetailsComments";
 import CreateComment from "../Details/create-comment/CreateComments";
+import useRequest from '../../hooks/useRequest';
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 
-export default function Details(
-    {
-        user
-    }
-) {
+export default function Details() {
     const { recipeId } = useParams();
-    const [recipeData, setRecipeData] = useState({});
-    const [refresh, setRefresh] = useState(false);    
+    const [refresh, setRefresh] = useState(false);
     const navigate = useNavigate();
+    const { user } = useContext(UserContext);
 
-    useEffect(() => {
-        const recipeData = async () => {
-            const recipesData = await fetchRecipeById(recipeId);
-            setRecipeData(recipesData);
-        }
-        recipeData();
-    }, [recipeId]);
+
+    let url = `data/recipes?where=_id%3D"${recipeId}"`;
+    const { data: recipeDataValue } = useRequest(url, []);
+    const recipeData = recipeDataValue[0] === undefined ? {} : recipeDataValue[0];
 
     const commentRefreshHandler = () => {
         setRefresh(state => !state);
@@ -93,12 +89,12 @@ export default function Details(
                                 onClick={() => { /* TODO: implement edit action (navigate/open form) */ }}
                             >
                                 Edit
-                            </button> 
-                            <Link 
-                                to={`/${recipeData._id}/edit`} 
+                            </button>
+                            <Link
+                                to={`/${recipeData._id}/edit`}
                                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow">
-                                    Edit
-                            </Link>                            
+                                Edit
+                            </Link>
                             <button className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700" onClick={deleteRecipeHandler}>Delete</button>
                         </div>
                     )
