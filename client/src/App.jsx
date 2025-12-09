@@ -1,7 +1,7 @@
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import Contact from './components/Contact/Contact';
+import AboutMe from './components/AboutMe/AboutMe';
 import { Routes, Route } from 'react-router';
 import Details from './components/Details/Details';
 import Login from './components/Login/Login';
@@ -27,7 +27,7 @@ function App() {
           <Route path="/soup" element={<Home categoryName="soup" />} />
           <Route path="/salad" element={<Home categoryName="salad" />} />
           <Route path="/main-course" element={<Home categoryName="main-course" />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about-me" element={<AboutMe />} />
           <Route path="/details/:recipeId" element={<Details />} />          
           <Route element={<AuthGuard user={user} />}>
             <Route path="/:recipeId/edit" element={<Edit />} />

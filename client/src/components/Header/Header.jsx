@@ -116,8 +116,8 @@ export default function Header() {
               </Link>
             )
           }
-          <Link to="/contact" className="text-sm/6 font-semibold text-gray-900">
-            Contact
+          <Link to="/about-me" className="text-sm/6 font-semibold text-gray-900">
+            About Me
           </Link>
           {
             !isAuthenticated && (
@@ -202,10 +202,10 @@ export default function Header() {
                   )
                 }
                 <Link
-                  to="/contact"
+                  to="/about-me"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  Contact
+                  About Me
                 </Link>
                 {
                   !isAuthenticated && (
