@@ -14,7 +14,7 @@ export default function RecipeHomeItem(
     }
 ) {
 
-    const { data: comments } = useRequest(`data/comments?where=recipeId%3D"${recipeId}"`, []);
+    const { data: comments } = useRequest(`data/comments?where=recipeId%3D"${recipeId}" and isApproved%3Dtrue`, []);
 
 
     return (

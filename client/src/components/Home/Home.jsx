@@ -25,7 +25,6 @@ export default function Home(
                         description={recipe.summary}
                         timeToCook={recipe.timeToCook}
                         createdOnValue={recipe._createdOn}
-                        commentCount={0}
                     />
                 </div>
             )

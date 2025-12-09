@@ -3,8 +3,7 @@ import { formattedDate } from "../../../utils/DateConvertion";
 import useRequest from "../../../hooks/useRequest";
 
 export default function DetailsComments({
-    recipeId,
-    refresh
+    recipeId    
 }) {
 
     const [comments, setComments] = useState([]);
@@ -14,12 +13,12 @@ export default function DetailsComments({
      useEffect(() => {
      
         const getComments = async () => {
-            const commentsValue = await requestData(`data/comments?where=recipeId%3D"${recipeId}"&load=author%3D_ownerId%3Ausers`);
+            const commentsValue = await requestData(`data/comments?where=recipeId%3D"${recipeId}" and isApproved%3Dtrue&load=author%3D_ownerId%3Ausers`);
             setComments(commentsValue);
         }
 
         getComments();
-     }, [recipeId, refresh]);
+     }, [recipeId]);
 
     return (
         <>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import DetailsComments from "../Details/details-comments/DetailsComments";
 import CreateComment from "../Details/create-comment/CreateComments";
@@ -8,17 +7,12 @@ import UserContext from '../../contexts/UserContext';
 
 export default function Details() {
     const { recipeId } = useParams();
-    const [refresh, setRefresh] = useState(false);
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
 
     let url = `data/recipes?where=_id%3D"${recipeId}"`;
     const { data: recipeDataValue, requestData } = useRequest(url, []);
     const recipeData = recipeDataValue[0] === undefined ? {} : recipeDataValue[0];
-
-    const commentRefreshHandler = () => {
-        setRefresh(state => !state);
-    }
 
     const deleteRecipeHandler = async () => {
         const isConfirmed = confirm(`Are you sure you want to delete recipe: ${recipeData.title}`);
@@ -77,8 +71,10 @@ export default function Details() {
                     </p>
                 </div>
 
-                <DetailsComments recipeId={recipeData._id} refresh={refresh} />
-                <CreateComment onCreate={commentRefreshHandler} />
+                <DetailsComments recipeId={recipeData._id} />
+                {
+                    user && <CreateComment />
+                }
                 {
                     user && (user._id === recipeData._ownerId) && (
                         <div className="flex justify-center gap-4 mt-6">                           
