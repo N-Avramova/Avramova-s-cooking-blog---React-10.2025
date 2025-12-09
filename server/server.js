@@ -1322,11 +1322,27 @@
         users: {
             "35c62d76-8152-4626-8712-eeb96381bea8": {
                 email: "peter@abv.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                isAdmin: false,
+                fullName: "Peter Petrov"
             },
             "847ec027-f659-4086-8032-5173e2f9c93a": {
                 email: "john@abv.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                isAdmin: false,
+                fullName: "John Doy"
+            },
+            "7f2b9c8d-4ad3-4e43-9e0f-5c6e20d8c3f1": {
+                email: "nevena@abv.bg",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                isAdmin: true,
+                fullName: "Nevena Avramova"
+            },
+            "c3a11e92-8fb2-4c28-9d1c-77f1b947abc0": { 
+                email: "ivan@abv.bg",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",                 
+                isAdmin: false,
+                fullName: "Ivan Ivanov"
             }
         },
         sessions: {
@@ -1544,27 +1560,7 @@
         "_createdOn": 1607558400000,
         "isApproved": true
     }
-    },
-    users: {
-         "35c62d76-8152-4626-8712-eeb96381bea8": {
-		"_id": "35c62d76-8152-4626-8712-eeb96381bea8",
-        "firstName": "Ivan",
-        "lastName": "Ivanov",
-        "email": "123@ddd.cc",
-        "_createdOn": 1617194350000,
-        "password": "12345",
-        "isAdmin": true
-    },
-    "847ec027-f659-4086-8032-5173e2f9c93a": {
-		"_id": "847ec027-f659-4086-8032-5173e2f9c93a",
-        "firstName": "Plamen",
-        "lastName": "Petrov",
-        "email": "rtr@dr.gn",
-        "_createdOn": 1617194350000,
-        "password": "54321",
-        "isAdmin": false
-    }
-    }
+    }   
     };
     var rules$1 = {
         users: {

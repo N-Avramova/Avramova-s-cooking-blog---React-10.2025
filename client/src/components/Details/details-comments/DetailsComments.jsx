@@ -1,33 +1,25 @@
 import { useEffect, useState } from "react";
-import { fetchComments } from "../../../services/commentsService";
-import { fetchUsersByUserIds } from "../../../services/usersServices";
 import { formattedDate } from "../../../utils/DateConvertion";
+import useRequest from "../../../hooks/useRequest";
 
 export default function DetailsComments({
     recipeId,
     refresh
 }) {
-    const [comments, setComments] = useState([]);
 
-    useEffect(() => {
-        const fetchAllComments = async () => {
-            const allCommentsValue = await fetchComments();
-            const filteredComments = allCommentsValue.filter(
-                comment => comment.recipeId === recipeId && comment.isApproved
-            );
-            const commentsOwnersData = await fetchUsersByUserIds(filteredComments.map(c => c._ownerId));
-            const resultComments = filteredComments.map(comment => {
-                const owner = commentsOwnersData.find(owner => owner.id === comment.ownerId);
-                return {
-                    ...comment,
-                    commentOwnerFullName: [owner?.firstName, owner?.lastName].filter(Boolean).join(' ') || ''
-                };
-            });
-            console.log(resultComments);
-            setComments(resultComments);
-        };
-        fetchAllComments();
-    }, [recipeId, refresh]);
+    const [comments, setComments] = useState([]);
+   
+     const { requestData } = useRequest();
+
+     useEffect(() => {
+     
+        const getComments = async () => {
+            const commentsValue = await requestData(`data/comments?where=recipeId%3D"${recipeId}"&load=author%3D_ownerId%3Ausers`);
+            setComments(commentsValue);
+        }
+
+        getComments();
+     }, [recipeId, refresh]);
 
     return (
         <>
@@ -41,7 +33,7 @@ export default function DetailsComments({
                         return (
                             <div className="flex gap-3" key={comment._id}>
                                 <div>
-                                    <h4 className="font-semibold text-gray-800">{comment.commentOwnerFullName}</h4>
+                                    <h4 className="font-semibold text-gray-800">{comment.author.fullName}</h4>
                                     <p className="text-gray-700">{comment.text}</p>
                                     <span className="text-gray-400 text-sm">{formattedDate(comment.date)}</span>
                                 </div>
