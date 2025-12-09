@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router";
-import { deleteRecipe } from "../../services/recipeService";
 import DetailsComments from "../Details/details-comments/DetailsComments";
 import CreateComment from "../Details/create-comment/CreateComments";
 import useRequest from '../../hooks/useRequest';
@@ -13,9 +12,8 @@ export default function Details() {
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
 
-
     let url = `data/recipes?where=_id%3D"${recipeId}"`;
-    const { data: recipeDataValue } = useRequest(url, []);
+    const { data: recipeDataValue, requestData } = useRequest(url, []);
     const recipeData = recipeDataValue[0] === undefined ? {} : recipeDataValue[0];
 
     const commentRefreshHandler = () => {
@@ -28,8 +26,9 @@ export default function Details() {
         if (!isConfirmed) {
             return;
         }
-        const result = await deleteRecipe(recipeData.recipeId);
-        console.log(result);
+
+        const deleteUrl = `data/recipes/${recipeId}`;
+        await requestData(deleteUrl, 'DELETE');      
         navigate('/');
     }
 
@@ -81,15 +80,8 @@ export default function Details() {
                 <DetailsComments recipeId={recipeData._id} refresh={refresh} />
                 <CreateComment onCreate={commentRefreshHandler} />
                 {
-                    user && user.isAdmin && (
-                        <div className="flex justify-center gap-4 mt-6">
-                            <button
-                                type="button"
-                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow"
-                                onClick={() => { /* TODO: implement edit action (navigate/open form) */ }}
-                            >
-                                Edit
-                            </button>
+                    user && (user._id === recipeData._ownerId) && (
+                        <div className="flex justify-center gap-4 mt-6">                           
                             <Link
                                 to={`/${recipeData._id}/edit`}
                                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow">
@@ -99,7 +91,6 @@ export default function Details() {
                         </div>
                     )
                 }
-
             </div>
         </>
     )
