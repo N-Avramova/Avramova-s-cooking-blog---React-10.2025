@@ -49,7 +49,7 @@ export default function Details() {
                 {/* <!-- Meta info --> */}
                 <div class="flex items-center space-x-4 text-gray-500 text-sm mb-6">
                     <span class="inline-block bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-md mb-3">
-                        {recipeData.category?.name}
+                        {recipeData.categoryName}
                     </span>
                     <span>⏱️ {recipeData.timeToCook}</span>
 

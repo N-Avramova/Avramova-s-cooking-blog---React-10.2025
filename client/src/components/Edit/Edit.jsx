@@ -1,95 +1,67 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
-import { fetchRecipeById } from "../../services/recipeService";
+import useRequest from '../../hooks/useRequest';
+import useForm from "../../hooks/useForm";
 
-export default function Edit({ onSave, onCancel }) {
-  
-    const { recipeId } = useParams();
-    const navigate = useNavigate();
-    const [recipeData, setRecipeData] = useState({});  
+export default function Edit() {
+  const { recipeId } = useParams();
+  const navigate = useNavigate();
+  const { requestData } = useRequest();
 
-     useEffect(() => {
-            const recipeData = async () => {
-                const recipesData = await fetchRecipeById(recipeId);
-                setRecipeData(recipesData);
-            }
-            recipeData();
-        }, [recipeId]);
+  const editRecipeHandler = async (values) => {
+    let data = values;
+    if (!Array.isArray(values.ingredients)) {
+      data = {
+        ...values,
+        ingredients: values.ingredients.split(",")
+      }
+    }
+    try {
+      await requestData(`data/recipes/${recipeId}`, 'PUT', data);
 
-  const [form, setForm] = useState({
-    title: recipeData.title,
-    date: recipeData.date,
-    imageUrl: recipeData.imageUrl,
-    summary: recipeData.summary,
-    timeToCook: recipeData.timeToCook,
-    ingredients: recipeData.ingredients,
-    category: {
-      name: recipeData.category?.name,
-      description: recipeData.category?.description,
-    },
+      navigate(`/details/${recipeId}`);
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  const {
+    registerValueData,
+    formActionHandler,
+    setValues
+  } = useForm(editRecipeHandler, {
+    title: "",
+    imageUrl: "",
+    summary: "",
+    timeToCook: "",
+    ingredients: "",
+    categoryName: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleCategoryChange = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      category: { ...form.category, [name]: value },
-    });
-  };
-
-  const handleIngredientChange = (index, value) => {
-    const updated = [...form.ingredients];
-    updated[index] = value;
-    setForm({ ...form, ingredients: updated });
-  };
-
-  const addIngredient = () => {
-    setForm({ ...form, ingredients: [...form.ingredients, ""] });
-  };
-
-  const removeIngredient = (index) => {
-    const updated = form.ingredients.filter((_, i) => i !== index);
-    setForm({ ...form, ingredients: updated });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSave(form);
-    navigate("/");
-  };
+  useEffect(() => {
+    requestData(`data/recipes/${recipeId}`)
+      .then(result => {
+        setValues(result);
+      })
+      .catch(err => {
+        alert(err.message);
+      })
+  }, [recipeId, setValues]);
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">Edit Recipe</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form action={formActionHandler} className="space-y-6">
 
         {/* Title */}
         <div>
           <label className="block font-medium">Title</label>
           <input
             type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
+            {...registerValueData("title")}
             className="w-full mt-1 p-2 border rounded"
-          />
-        </div>
-
-        {/* Date */}
-        <div>
-          <label className="block font-medium">Date</label>
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded"
+            required
           />
         </div>
 
@@ -98,19 +70,10 @@ export default function Edit({ onSave, onCancel }) {
           <label className="block font-medium">Image URL</label>
           <input
             type="text"
-            name="imageUrl"
-            value={form.imageUrl}
-            onChange={handleChange}
+            {...registerValueData("imageUrl")}
             className="w-full mt-1 p-2 border rounded"
+            required
           />
-
-          {form.imageUrl && (
-            <img
-              src={form.imageUrl}
-              alt="Preview"
-              className="mt-3 w-48 h-32 object-cover rounded border"
-            />
-          )}
         </div>
 
         {/* Summary */}
@@ -118,9 +81,9 @@ export default function Edit({ onSave, onCancel }) {
           <label className="block font-medium">Summary</label>
           <textarea
             name="summary"
-            value={form.summary}
-            onChange={handleChange}
+            {...registerValueData("summary")}
             className="w-full mt-1 p-2 border rounded h-28"
+            required
           />
         </div>
 
@@ -130,9 +93,9 @@ export default function Edit({ onSave, onCancel }) {
           <input
             type="text"
             name="timeToCook"
-            value={form.timeToCook}
-            onChange={handleChange}
+            {...registerValueData("timeToCook")}
             className="w-full mt-1 p-2 border rounded"
+            required
           />
         </div>
 
@@ -141,76 +104,50 @@ export default function Edit({ onSave, onCancel }) {
           <label className="block font-medium">Ingredients</label>
 
           <div className="space-y-2 mt-2">
-            {form.ingredients?.map((ing, index) => (
-              <div key={index} className="flex gap-2">
-                <input
-                  type="text"
-                  value={ing}
-                  onChange={(e) =>
-                    handleIngredientChange(index, e.target.value)
-                  }
-                  className="flex-1 p-2 border rounded"
-                />
-                <button
-                  type="button"
-                  onClick={() => removeIngredient(index)}
-                  className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  -
-                </button>
-              </div>
-            ))}
+            <textarea
+              name="ingredients"
+              {...registerValueData("ingredients")}
+              className="w-full mt-1 p-2 border rounded h-28"
+              required
+              placeholder="Please, add ingredients separate with comma"
+            />
           </div>
 
-          <button
-            type="button"
-            onClick={addIngredient}
-            className="mt-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Add Ingredient
-          </button>
         </div>
 
         {/* Category */}
         <div>
-          <label className="block font-medium">Category Name</label>
-          <input
-            type="text"
-            name="name"
-            value={form.category.name}
-            onChange={handleCategoryChange}
-            className="w-full mt-1 p-2 border rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium">Category Description</label>
-          <textarea
-            name="description"
-            value={form.category.description}
-            onChange={handleCategoryChange}
-            className="w-full mt-1 p-2 border rounded h-24"
-          />
+          <label className="block font-medium">Category</label>
+          <select
+            name="categoryName"
+            {...registerValueData("categoryName")}
+            className="w-full mt-1 p-2 border rounded bg-white"
+            required
+          >
+            <option value="">Select Category</option>
+            <option value="soup">Soup</option>
+            <option value="sweet">Sweet</option>
+            <option value="main-course">Main Dish</option>
+            <option value="salad">Salad</option>
+          </select>
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-end gap-3 pt-4">
+        <div className="flex justify-center gap-4 mt-6"> 
+          <button
+            value="Edit Recipe"
+            type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow"
+          >
+            Save
+          </button>
           <button
             type="button"
-            onClick={onCancel}
+            onClick={() => navigate(`/details/${recipeId}`)}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
           >
             Cancel
           </button>
-
-          <button
-            type="submit"
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-          >
-            Save Changes
-          </button>
         </div>
-
       </form>
     </div>
   );

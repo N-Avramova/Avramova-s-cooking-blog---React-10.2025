@@ -5,9 +5,10 @@ import useForm from "../../hooks/useForm";
 export default function CreateRecipe() {
     const navigate = useNavigate();
     const { requestData } = useRequest();
-   
-    const createRecipeHandler = async (values) => {       
-        const data = {...values,
+
+    const createRecipeHandler = async (values) => {
+        const data = {
+            ...values,
             ingredients: values.ingredients.split(",")
         }
 
@@ -116,21 +117,19 @@ export default function CreateRecipe() {
                 </div>
 
                 {/* Buttons */}
-                <div className="flex justify-end gap-3 pt-4">
+                <div className="flex justify-center gap-4 mt-6">
+                    <button
+                        value="Add Recipe"
+                        type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow"
+                    >
+                        Create Recipe
+                    </button>
                     <button
                         type="button"
                         onClick={() => navigate("/")}
                         className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
                     >
                         Cancel
-                    </button>
-
-                    <button
-                        value="Add Recipe"
-                        type="submit"
-                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-                    >
-                        Create Recipe
                     </button>
                 </div>
             </form>
