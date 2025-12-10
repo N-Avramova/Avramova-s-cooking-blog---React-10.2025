@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -18,24 +18,15 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, } from '@heroicons/react/20/solid'
 import { Link } from 'react-router'
-import { fetchDistinctCategories } from '../../services/recipeService'
+//import { fetchDistinctCategories } from '../../services/recipeService'
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
+import useRequest from '../../hooks/useRequest'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
-
   const { user, isAuthenticated, isAdmin } = useContext(UserContext);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const distinctCategories = await fetchDistinctCategories();
-      setCategories(distinctCategories);
-    }
-    fetchCategories();
-  }, []);
-
+  const { data: categories } = useRequest("data/categories", []);
 
   return (
     <header className="bg-white">

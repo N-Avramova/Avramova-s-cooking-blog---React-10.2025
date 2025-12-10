@@ -1560,6 +1560,24 @@
         "_createdOn": 1607558400000,
         "isApproved": true
     }
+    },
+    categories: {
+         "b3d8c4c0-4f2b-4c92-9cc0-3c9e3e2f5d6a": {
+            "name": "sweet",
+            "description": "Dessert recipes including cookies, cakes, and pastries."
+        },
+        "7f1b9a1e-0e65-4c3e-94c8-0a0bcfdf2b43": {
+            "name": "soup",
+            "description": "Warm and comforting soup recipes for all seasons."
+        },
+          "e92a5d66-7b1a-4971-86e2-9b6b0c4b2f10": {
+            "name": "salad",
+            "description": "Fresh and healthy salad recipes."
+        },
+        "4c8b6ad9-32f4-4fa3-8e35-6e60eb93aa87": {
+            "name": "main-course",
+            "description": "Hearty main course recipes including meat, poultry, and vegetarian dishes."
+        }
     }   
     };
     var rules$1 = {
