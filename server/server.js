@@ -1333,10 +1333,10 @@
                 fullName: "John Doy"
             },
             "7f2b9c8d-4ad3-4e43-9e0f-5c6e20d8c3f1": {
-                email: "nevena@abv.bg",
+                email: "admin@abv.bg",
                 hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
                 isAdmin: true,
-                fullName: "Nevena Avramova"
+                fullName: "Avramova Admin",
             },
             "c3a11e92-8fb2-4c28-9d1c-77f1b947abc0": { 
                 email: "ivan@abv.bg",

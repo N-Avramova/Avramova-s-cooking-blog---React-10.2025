@@ -29,6 +29,13 @@ export default function useRequest(url, initialState) {
                 'X-Authorization': config.accessToken || user.accessToken,
             }
         }
+        
+        if(user?.isAdmin){
+            options.headers = {
+                ...options.headers,
+                'X-Admin': true,
+            }
+        }
 
         const response = await fetch(`${baseUrlToDataStorage}${url}`, options);
 

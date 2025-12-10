@@ -8,7 +8,8 @@ const initialState = {
     password: '',
     _createdOn: 0,
     _id: '',
-    accessToken: ''
+    accessToken: '',
+    isAdmin: false
 };
 
 const UserContext = createContext({

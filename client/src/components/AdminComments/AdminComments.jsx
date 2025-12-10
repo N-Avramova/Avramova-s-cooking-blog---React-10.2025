@@ -1,42 +1,56 @@
 import { useEffect, useState } from "react";
-import { fetchNotApprovedComments } from "../../services/commentsService";
-import { fetchUsersByUserIds } from "../../services/usersServices";
+import useRequest from '../../hooks/useRequest';
 
 export default function AdminComments() {
   const [commentsData, setCommentsData] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const { requestData } = useRequest();
 
   useEffect(() => {
     const fetchComments = async () => {
-      const comments = await fetchNotApprovedComments();
-      const commentsOwnersData = await fetchUsersByUserIds(comments.map(c => c._ownerId));
-      const resultComments = comments.map(comment => {
-        const owner = commentsOwnersData.find(owner => owner.id === comment.ownerId);
-        return {
-          ...comment,
-          commentOwnerFullName: [owner?.firstName, owner?.lastName].filter(Boolean).join(' ') || '',
-          email: owner?.email || ''
-        };
-      });
+      const url = `data/comments?where=isApproved%3Dfalse&load=author%3D_ownerId%3Ausers`;
+      const recipesData = await requestData("data/recipes");
+      const resultComments = await requestData(url);
 
-      setCommentsData(resultComments);
+      const data = resultComments.map(comment => (
+        {
+          ...comment,
+          recipeData: recipesData.find((recipe) => recipe._id === comment.recipeId),
+        }));
+      setCommentsData(data);
     };
     fetchComments();
-  }, []);
+  }, [refresh]);
 
-  const approveCommentHandler = async () => {
+  const approveCommentHandler = async (commentId) => {
     const isConfirmed = confirm(`Are you sure you want to approve comment?`);
 
     if (!isConfirmed) {
       return;
     }
+
+    const currentComment = commentsData.filter((c) => c._id === commentId);
+    currentComment[0].isApproved = true;
+
+    const approvedUrl = `data/comments/${commentId}`;
+    const result = await requestData(approvedUrl, "PUT", currentComment);
+    if (result) {
+      setRefresh((state) => !state);
+    }
   };
 
-  const rejectCommentHandler = async () => {
+  const rejectCommentHandler = async (commentId) => {
     const isConfirmed = confirm(`Are you sure you want to reject comment?`);
 
     if (!isConfirmed) {
       return;
-    } 
+    }
+
+    const rejectUrl = `data/comments/${commentId}`;
+    const result = await requestData(rejectUrl, 'DELETE');
+    if (result) {
+      setRefresh((state) => !state);
+    }
   };
 
   return (
@@ -47,6 +61,9 @@ export default function AdminComments() {
             <tr>
               <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                 Comment
+              </th> 
+              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                Recipe Name
               </th>
               <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                 Owner
@@ -62,15 +79,16 @@ export default function AdminComments() {
 
           <tbody className="divide-y divide-gray-200">
             {commentsData.map((c) => (
-              <tr key={c.id}>
+              <tr key={c._id}>
                 <td className="px-6 py-4 text-gray-800">{c.text}</td>
-                <td className="px-6 py-4 text-gray-500">{c.commentOwnerFullName}</td>
-                <td className="px-6 py-4 text-gray-500">{c.email}</td>
+                <td className="px-6 py-4 text-gray-800">{c.recipeData.title}</td>
+                <td className="px-6 py-4 text-gray-500">{c.author.fullName}</td>
+                <td className="px-6 py-4 text-gray-500">{c.author.email}</td>
                 <td className="px-6 py-4 flex items-center justify-center gap-2">
-                  <button onClick={approveCommentHandler} className="px-3 py-1.5 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">
+                  <button onClick={() => approveCommentHandler(c._id)} className="px-3 py-1.5 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">
                     Approve
                   </button>
-                  <button onClick={rejectCommentHandler} className="px-3 py-1.5 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition">
+                  <button onClick={() => rejectCommentHandler(c._id)} className="px-3 py-1.5 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition">
                     Reject
                   </button>
                 </td>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import useRequest from "../../../hooks/useRequest"
+import useRequest from "../../../hooks/useRequest";
 import useForm from "../../../hooks/useForm";
 
 export default function CreateComments() {
