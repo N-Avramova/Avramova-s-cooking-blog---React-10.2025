@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { createContext } from 'react';
 import useRequest from '../hooks/useRequest';
 import usePersistedAuthState from '../hooks/usePersistedAuthState';
@@ -23,30 +22,24 @@ const UserContext = createContext({
 export function UserProvider({
     children,
 }) {
-    const [user, setUser] = useState(null);
+    
     const { requestData } = useRequest();
-    const { setPersistedAuthState, clearPersistedAuthState } = usePersistedAuthState(initialState, "userAuthToken");
-
+    const { state : user, setPersistedAuthState, clearPersistedAuthState } = usePersistedAuthState(initialState, "userAuthToken");
+    
     const registerHandler = async (email, password) => {
         const isAdmin = false;
         const newUser = { email, password, isAdmin };
 
-        // Register API call 
         const user = await requestData('users/register', 'POST', newUser);
-
-        // Login user after register and save token
-        setUser(user);
         setPersistedAuthState(user);
     };
 
     const loginHandler = async (email, password) => {
-        const user = await requestData("users/login", "POST", { email, password })
-        setUser(user);
+        const user = await requestData("users/login", "POST", { email, password });
         setPersistedAuthState(user);
     };
 
     const logoutHandler = async () => {
-        setUser(null);
         clearPersistedAuthState();
     };
 

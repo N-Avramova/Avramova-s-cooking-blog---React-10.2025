@@ -29,8 +29,8 @@ export default function AdminComments() {
       return;
     }
 
-    const currentComment = commentsData.filter((c) => c._id === commentId);
-    currentComment[0].isApproved = true;
+    const currentComment = commentsData.find((c) => c._id === commentId);
+    currentComment.isApproved = true;
 
     const approvedUrl = `data/comments/${commentId}`;
     const result = await requestData(approvedUrl, "PUT", currentComment);

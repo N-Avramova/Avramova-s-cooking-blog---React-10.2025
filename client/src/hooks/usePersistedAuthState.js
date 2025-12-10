@@ -5,7 +5,7 @@ export default function usePersistedAuthState(initialState, key) {
         const storageData = localStorage.getItem(key);
 
         if (!storageData) {
-            return initialState;
+            return null;
         }
 
         const data = JSON.parse(storageData);
@@ -26,6 +26,7 @@ export default function usePersistedAuthState(initialState, key) {
 
     const clearPersistedAuthState = () => {
         localStorage.removeItem(key);
+        setState(null);
     };
 
     return {
