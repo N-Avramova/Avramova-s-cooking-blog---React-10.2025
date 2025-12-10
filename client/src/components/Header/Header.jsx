@@ -18,7 +18,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, } from '@heroicons/react/20/solid'
 import { Link } from 'react-router'
-//import { fetchDistinctCategories } from '../../services/recipeService'
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import useRequest from '../../hooks/useRequest'

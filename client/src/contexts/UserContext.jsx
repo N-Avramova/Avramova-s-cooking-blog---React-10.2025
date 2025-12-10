@@ -22,25 +22,40 @@ const UserContext = createContext({
 export function UserProvider({
     children,
 }) {
-    
+
     const { requestData } = useRequest();
-    const { state : user, setPersistedAuthState, clearPersistedAuthState } = usePersistedAuthState(initialState, "userAuthToken");
-    
+    const { state: user, setPersistedAuthState, clearPersistedAuthState } = usePersistedAuthState(initialState, "userAuthToken");
+
     const registerHandler = async (email, password) => {
         const isAdmin = false;
         const newUser = { email, password, isAdmin };
 
-        const user = await requestData('users/register', 'POST', newUser);
-        setPersistedAuthState(user);
+        try {
+            const user = await requestData('users/register', 'POST', newUser);
+            setPersistedAuthState(user);
+        }
+        catch (err) {
+            alert(err + ": Registration was not successful. Please try again.");
+        }
     };
 
     const loginHandler = async (email, password) => {
-        const user = await requestData("users/login", "POST", { email, password });
-        setPersistedAuthState(user);
+        try {
+            const user = await requestData("users/login", "POST", { email, password });
+            setPersistedAuthState(user);
+        }
+        catch (err) {
+            alert(err + ": The credentials you entered don’t appear to be correct, or your account may not be registered yet.");
+        }
     };
 
     const logoutHandler = async () => {
-        clearPersistedAuthState();
+        try {
+            clearPersistedAuthState();
+        }
+        catch (err) {
+            alert(err + ": Logout failed.")
+        }
     };
 
     const userContextValue = {
